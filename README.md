@@ -27,38 +27,94 @@ Customer: Akses untuk melihat menu dan memesan makanan.
 Chef: Akses untuk melihat pesanan dan memperbarui status
 Admin: Akses penuh untuk mengelola menu, pengguna, dan melihat semua pesanan.
 
-1. Users 
-| Field        | Deskripsi                                         |
-| ------------ | ------------------------------------------------- |
-| `id`         | Primary key (auto increment).                     |
-| `name`       | Nama lengkap pengguna.                            |
-| `email`      | Alamat email pengguna (unik).                     |
-| `password`   | Kata sandi (terenkripsi).                         |
-| `role`       | Peran pengguna: `admin`, `chef`, atau `customer`. |
-| `created_at` | Waktu saat data dibuat.                           |
-| `updated_at` | Waktu saat data diperbarui.                       |
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tabel Database</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      margin-bottom: 40px;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    caption {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
 
+  <!-- Tabel Users -->
+  <table>
+    <caption>Users</caption>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Deskripsi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>id</td><td>Primary key (auto increment).</td></tr>
+      <tr><td>name</td><td>Nama lengkap pengguna.</td></tr>
+      <tr><td>email</td><td>Alamat email pengguna (unik).</td></tr>
+      <tr><td>password</td><td>Kata sandi (terenkripsi).</td></tr>
+      <tr><td>role</td><td>Peran pengguna: <code>admin</code>, <code>chef</code>, atau <code>customer</code>.</td></tr>
+      <tr><td>created_at</td><td>Waktu saat data dibuat.</td></tr>
+      <tr><td>updated_at</td><td>Waktu saat data diperbarui.</td></tr>
+    </tbody>
+  </table>
 
-2. menus
-| Field          | Deskripsi                          |
-| -------------- | ---------------------------------- |
-| `id`           | Primary key.                       |
-| `nama_makanan` | Nama dari makanan.                 |
-| `harga`        | Harga dari makanan tersebut.       |
-| `deskripsi`    | Deskripsi singkat tentang makanan. |
-| `created_at`   | Timestamp data dibuat.             |
-| `updated_at`   | Timestamp data diperbarui.         |
+  <!-- Tabel Menus -->
+  <table>
+    <caption>Menus</caption>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Deskripsi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>id</td><td>Primary key.</td></tr>
+      <tr><td>nama_makanan</td><td>Nama dari makanan.</td></tr>
+      <tr><td>harga</td><td>Harga dari makanan tersebut.</td></tr>
+      <tr><td>deskripsi</td><td>Deskripsi singkat tentang makanan.</td></tr>
+      <tr><td>created_at</td><td>Timestamp data dibuat.</td></tr>
+      <tr><td>updated_at</td><td>Timestamp data diperbarui.</td></tr>
+    </tbody>
+  </table>
 
+  <!-- Tabel Orders -->
+  <table>
+    <caption>Orders</caption>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Deskripsi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>id</td><td>Primary key.</td></tr>
+      <tr><td>user_id</td><td>Foreign key dari tabel <code>users</code>. Menunjukkan siapa yang memesan.</td></tr>
+      <tr><td>menu_id</td><td>Foreign key dari tabel <code>menus</code>. Menunjukkan makanan apa yang dipesan.</td></tr>
+      <tr><td>status</td><td>Status pesanan: <code>pending</code>, <code>processing</code>, <code>completed</code>, <code>cancelled</code>, dll.</td></tr>
+      <tr><td>created_at</td><td>Waktu saat pesanan dibuat.</td></tr>
+      <tr><td>updated_at</td><td>Waktu saat pesanan diperbarui.</td></tr>
+    </tbody>
+  </table>
 
-3. orders
-| Field        | Deskripsi                                                               |
-| ------------ | ----------------------------------------------------------------------- |
-| `id`         | Primary key.                                                            |
-| `user_id`    | Foreign key dari tabel `users`. Menunjukkan siapa yang memesan.         |
-| `menu_id`    | Foreign key dari tabel `menus`. Menunjukkan makanan apa yang dipesan.   |
-| `status`     | Status pesanan: `pending`, `processing`, `completed`, `cancelled`, dll. |
-| `created_at` | Waktu saat pesanan dibuat.                                              |
-| `updated_at` | Waktu saat pesanan diperbarui.                                          |
+</body>
+</html>
 
 
 Relasi Antar Tabel Sistem Pemesanan Makanan
