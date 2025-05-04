@@ -1,15 +1,78 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+judul : Sistem Pemesanan Makanan
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+Nama : Melisa
+Nim  : D0223302
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+
+Framework Web Based
+2025
+
+Aplikasi ini memungkinkan pengguna melakukan pemesanan makanan secara online. Sistem dibagi menjadi beberapa role pengguna dengan akses dan fitur yang berbeda. Data disimpan dalam basis data dengan relasi antar tabel seperti users, menus, dan orders. Sistem ini mendukung tiga jenis role pengguna:
+
+- **Admin**: Mengelola data user (tambah/edit/hapus), Mengelola daftar menu makanan, dan Melihat semua pesanan dari customer.
+- **Chef**: Melihat pesanan yang masuk, Mengupdate status pesanan (misalnya: diproses, selesai), dan Fokus pada pengelolaan proses memasak.
+- **Customer**: Melihat daftar menu, Memesan makanan dari daftar menu, dan Melihat status pesanan yang mereka buat.
+
+Fitur Utama Aplikasi Pemesanan Makanan:
+Aplikasi ini dirancang untuk memfasilitasi proses pemesanan makanan secara daring, baik untuk pelanggan, chef, maupun admin. Sistem ini memanfaatkan manajemen peran dan autentikasi untuk memastikan akses fitur sesuai tanggung jawab masing-masing pengguna.
+
+## Fitur Utama
+- **Autentikasi Pengguna**: Pengguna dapat mendaftar, masuk, dan mengelola akun mereka. Sistem ini memastikan bahwa setiap pengguna memiliki akses sesuai dengan peran yang dimilikinya, yaitu sebagai customer, chef, atau admin.
+- **Pemesanan Makanan oleh Pelanggan**: pelanggan dapat Melihat daftar menu makanan,Melakukan pemesanan makanan secara langsung, dan Melihat status dari pesanan mereka (misal: menunggu, diproses, selesai).
+- **Manajemen Pesanan oleh Chef**: chef dapat Melihat daftar pesanan yang masuk, Mengubah status pesanan (misalnya dari diproses menjadi selesai), dan Fokus hanya pada proses produksi makanan, tidak pada manajemen menu atau pengguna.
+- **Manajemen Menu oleh Admin**: Admin dapat Membuat, memperbarui, dan menghapus menu makanan, Menentukan nama makanan, harga, dan deskripsi singkat, dan Menjamin menu yang ditampilkan selalu up-to-date dan sesuai kebutuhan pelanggan.
+- **Role Management**: 
+Customer: Akses untuk melihat menu dan memesan makanan.
+Chef: Akses untuk melihat pesanan dan memperbarui status
+Admin: Akses penuh untuk mengelola menu, pengguna, dan melihat semua pesanan.
+
+1. Users 
+| Field        | Deskripsi                                         |
+| ------------ | ------------------------------------------------- |
+| `id`         | Primary key (auto increment).                     |
+| `name`       | Nama lengkap pengguna.                            |
+| `email`      | Alamat email pengguna (unik).                     |
+| `password`   | Kata sandi (terenkripsi).                         |
+| `role`       | Peran pengguna: `admin`, `chef`, atau `customer`. |
+| `created_at` | Waktu saat data dibuat.                           |
+| `updated_at` | Waktu saat data diperbarui.                       |
+
+
+2. menus
+| Field          | Deskripsi                          |
+| -------------- | ---------------------------------- |
+| `id`           | Primary key.                       |
+| `nama_makanan` | Nama dari makanan.                 |
+| `harga`        | Harga dari makanan tersebut.       |
+| `deskripsi`    | Deskripsi singkat tentang makanan. |
+| `created_at`   | Timestamp data dibuat.             |
+| `updated_at`   | Timestamp data diperbarui.         |
+
+
+3. orders
+| Field        | Deskripsi                                                               |
+| ------------ | ----------------------------------------------------------------------- |
+| `id`         | Primary key.                                                            |
+| `user_id`    | Foreign key dari tabel `users`. Menunjukkan siapa yang memesan.         |
+| `menu_id`    | Foreign key dari tabel `menus`. Menunjukkan makanan apa yang dipesan.   |
+| `status`     | Status pesanan: `pending`, `processing`, `completed`, `cancelled`, dll. |
+| `created_at` | Waktu saat pesanan dibuat.                                              |
+| `updated_at` | Waktu saat pesanan diperbarui.                                          |
+
+
+Relasi Antar Tabel Sistem Pemesanan Makanan
+1. users → orders: One-to-Many 
+   Setiap pengguna dengan peran customer dapat membuat banyak pesanan.
+2. orders → menus: Many-to-One
+   Setiap pesanan hanya merujuk ke satu menu makanan, tetapi satu menu bisa dipesan berkali-kali oleh banyak user.
+3. users → menus (khusus chef): One-to-Many
+   Chef dapat bertanggung jawab mengelola atau memasak banyak menu (opsional jika sistem melibatkan menu khusus per chef).
+4. users → roles: Many-to-One
+   Setiap user memiliki satu peran (admin, chef, atau customer), tetapi satu role bisa dimiliki oleh banyak user.
+5. orders → statuses (opsional): Many-to-One
+   Setiap pesanan memiliki satu status (misalnya: pending, processed, completed), tetapi satu status bisa dimiliki oleh banyak order.
+
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
@@ -19,19 +82,7 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 - [Robust background job processing](https://laravel.com/docs/queues).
 - [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
 ### Premium Partners
 
