@@ -16,7 +16,7 @@ return new class extends Migration
         $table->timestamp('waktu_pengiriman')->nullable(); 
         $table->text('alamat'); 
         $table->string('kurir')->nullable(); 
-        $table->string('kode_pelacakan')->nullable(); 
+        $table->string('kode_resi')->nullable(); 
         $table->timestamps();
     });
 

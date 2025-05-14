@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware([''])->group(function () {
-    Route::resource('/menus', MenuController::class)->middleware('role:admin');
-    Route::resource('/order', OrderController::class)->middleware('role:customer,chef');
+Route::get('/dashboard', function() {
+    return view('Admin.Dashboard');
 });
 
+Route::get('/form/login', function(){
+    return view('auth.login');
+});

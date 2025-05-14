@@ -9,11 +9,31 @@ class Menu extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_makanan', 'harga'];
+    protected $table = 'menus';
 
-    // Relasi: Menu punya banyak Order
+    protected $fillable = [
+        'nama',
+        'deskripsi',
+        'harga',
+        'gambar',
+        'user_id' // Jika chef yang menambahkan menu
+    ];
+
+    // Menu bisa punya banyak pesanan
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    // Menu bisa punya banyak feedback
+    public function feedback()
+    {
+        return $this->hasMany(Feedback::class);
+    }
+
+    // Jika chef bertanggung jawab atas menu
+    public function chef()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
