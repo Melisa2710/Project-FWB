@@ -4,19 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Menu;
 
 class Order extends Model
 {
     use HasFactory;
 
-    protected $table = 'orders';
-
     protected $fillable = [
         'user_id',
         'menu_id',
         'jumlah',
-        'status',
-        'catatan'
+        'status'
     ];
 
     public function user()
@@ -31,7 +29,7 @@ class Order extends Model
 
     public function payment()
     {
-        return $this->hasOne(Payment::class);
+        return $this->hasOne(Payment::class, 'order_id');
     }
 
     public function delivery()
@@ -41,6 +39,6 @@ class Order extends Model
 
     public function feedback()
     {
-        return $this->hasMany(Feedback::class);
+        return $this->hasOne(Feedback::class);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Order;
 
 class Menu extends Model
 {
@@ -11,13 +12,17 @@ class Menu extends Model
 
     protected $table = 'menus';
 
+
     protected $fillable = [
-        'nama',
-        'deskripsi',
+        'nama_makanan',
         'harga',
-        'gambar',
-        'user_id' // Jika chef yang menambahkan menu
     ];
+
+    public function index()
+    {
+        $menus = Menu::all();
+        return view('admin.menus.index', compact('menus'));
+    }
 
     // Menu bisa punya banyak pesanan
     public function orders()
@@ -29,11 +34,5 @@ class Menu extends Model
     public function feedback()
     {
         return $this->hasMany(Feedback::class);
-    }
-
-    // Jika chef bertanggung jawab atas menu
-    public function chef()
-    {
-        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -19,9 +19,13 @@ class Payment extends Model
         'tanggal_pembayaran'
     ];
 
-    // Relasi: satu pembayaran milik satu pesanan
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function order()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class, 'order_id');
     }
 }

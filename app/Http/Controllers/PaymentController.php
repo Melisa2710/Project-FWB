@@ -4,52 +4,46 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Payment;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
+
 class PaymentController extends Controller
 {
-    // Menampilkan semua data pembayaran
     public function index()
     {
-        return Payment::with(['order'])->get();
+        $payments = Payment::whereHas('order', function ($q) {
+            $q->where('user_id', Auth::id());
+        })->get();
+
+        return view('customer.payment.index', compact('payments'));
     }
 
-    // Menyimpan data pembayaran baru
+    public function create()
+    {
+        $orders = Order::where('user_id', Auth::id())
+            ->whereDoesntHave('payment')
+            ->get();
+
+        return view('customer.payment.create', compact('orders'));
+    }
+
+
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $request->validate([
             'order_id' => 'required|exists:orders,id',
             'metode_pembayaran' => 'required|string',
             'jumlah' => 'required|numeric',
-            'status' => 'required|in:pending,paid,failed',
-            'tanggal_pembayaran' => 'nullable|date'
         ]);
 
-        return Payment::create($data);
-    }
-
-    // Menampilkan detail pembayaran tertentu
-    public function show(Payment $payment)
-    {
-        return $payment->load(['order']);
-    }
-
-    // Memperbarui data pembayaran
-    public function update(Request $request, Payment $payment)
-    {
-        $data = $request->validate([
-            'metode_pembayaran' => 'sometimes|string',
-            'jumlah' => 'sometimes|numeric',
-            'status' => 'sometimes|in:pending,paid,failed',
-            'tanggal_pembayaran' => 'nullable|date'
+        Payment::create([
+            'order_id' => $request->order_id,
+            'metode_pembayaran' => $request->metode_pembayaran,
+            'jumlah' => $request->jumlah,
+            'status' => 'pending',
+            'tanggal_pembayaran' => now(),
         ]);
 
-        $payment->update($data);
-        return $payment;
-    }
-
-    // Menghapus data pembayaran
-    public function destroy(Payment $payment)
-    {
-        $payment->delete();
-        return response()->noContent();
+        return redirect()->route('customer.payments.index')->with('success', 'Pembayaran berhasil dibuat!');
     }
 }

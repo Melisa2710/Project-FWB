@@ -15,22 +15,23 @@ class Feedback extends Model
         'user_id',
         'menu_id',
         'order_id',
-        'penilaian',
-        'komentar'
+        'rating',
+        'komentar',
     ];
+
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function menu()
     {
-        return $this->belongsTo(Menu::class);
+        return $this->belongsTo(Menu::class, 'menu_id');
     }
 
     public function order()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class, 'order_id');
     }
 }

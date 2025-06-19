@@ -11,6 +11,7 @@ class Delivery extends Model
 
     protected $table = 'deliveries';
 
+
     protected $fillable = [
         'order_id',
         'status_pengiriman',
@@ -20,8 +21,13 @@ class Delivery extends Model
         'kode_resi'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function order()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class, 'order_id');
     }
 }

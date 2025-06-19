@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Delivery;
+
 class DeliveryController extends Controller
 {
-    // Menampilkan semua data pengiriman
     public function index()
     {
-        return Delivery::with(['order'])->get();
+        $deliveries = Delivery::all(); // atau with user_id
+        return view('customer.deliveries.index', compact('deliveries'));
     }
+
 
     // Menyimpan data pengiriman baru
     public function store(Request $request)
