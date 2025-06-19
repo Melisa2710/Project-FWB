@@ -49,7 +49,7 @@ Customer adalah pengguna akhir yang memesan makanan melalui aplikasi.
 
 - **Akses & Fitur**:
   - **Melihat Daftar Menu (menus)**:
-     - **Telusuri makanan berdasarkan nama, deskripsi, dan harga**.
+     - **Telusuri makanan berdasarkan nama, dan harga**.
   - **Melakukan Pemesanan (orders)**:
      - **Pesan makanan dari daftar menu**.
      - **Tentukan jumlah dan lihat estimasi biaya**.
