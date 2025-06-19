@@ -14,11 +14,11 @@ Admin memiliki akses penuh terhadap sistem dan bertanggung jawab atas pengelolaa
 
 - **Akses & Fitur**:
   - **Mengelola Data User (users)**:
-     - **Tambah, edit, hapus pengguna**.
-     - **Menentukan peran (role): admin, chef, customer**.
+     - **Hapus pengguna**.
+     - **Melihat peran (role): admin, chef, customer**.
   - **Mengelola Menu Makanan (menus)**:
      - **Tambah, ubah, dan hapus menu makanan**.
-     - **Tentukan nama, deskripsi, dan harga makanan**.
+     - **Tentukan nama, dan harga makanan**.
   - **Melihat & Mengelola Semua Pesanan (orders)**:
      - **Pantau semua pesanan dari semua user**.
      - **Lihat status pesanan (pending, diproses, selesai).**

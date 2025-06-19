@@ -24,7 +24,7 @@
 
                 <div class="card-body">
                     <h5 class="card-title">{{ $menu->nama_makanan }}</h5>
-                    <p class="card-text">gambar nasi goreng doang ini.</p>
+                    <p class="card-text">gambar doang ini.</p>
                 </div>
             </div>
         </div>

@@ -128,12 +128,6 @@
                             <span>Kelola Menu</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.orders') }}">
-                            <i class="fas fa-list"></i>
-                            <span>Kelola Pesanan</span>
-                        </a>
-                    </li>
                     <!-- Kelola Pesanan -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.orders.index') }}">
@@ -166,7 +160,7 @@
                 <!-- Chef Menu -->
                 @if (auth()->user()->role === 'chef')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('chef.orders') }}">
+                        <a class="nav-link" href="{{ route('chef.orders.index') }}">
                             <i class="fas fa-concierge-bell"></i>
                             <span>Pesanan Masuk</span>
                         </a>
