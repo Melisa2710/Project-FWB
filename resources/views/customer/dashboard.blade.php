@@ -16,9 +16,10 @@
                     $slug = Str::slug($menu->nama_makanan); 
                 @endphp
 
-                <img src="{{ asset('storage/menu/' . $slug . 'mie-goreng.jpg') }}"
+                <img src="{{ asset('storage/' . $slug . 'mie-goreng.jpg') }}"
                      alt="{{ $menu->nama_makanan }}"
-                     onerror="this.src='{{ asset('storage/menu/default.jpg') }}';"
+                     onerror="this.src='{{ asset('storage/menu/nasi-goreng.jpg') }}';"
+                     onerror="this.src='{{ asset('storage/menu/mie-goreng.jpg') }}';"
                      class="card-img-top"
                      style="height: 200px; object-fit: cover;">
 
@@ -26,6 +27,7 @@
                     <h5 class="card-title">{{ $menu->nama_makanan }}</h5>
                     <p class="card-text">gambar doang ini.</p>
                 </div>
+                
             </div>
         </div>
         @endforeach

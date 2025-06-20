@@ -114,21 +114,6 @@ Setiap pengguna memiliki peran (role): customer, chef, atau admin.
 - Feedback dikaitkan ke menu makanan dan pesanan.
 - Admin dapat melihat semua feedback untuk keperluan evaluasi kualitas layanan dan makanan.
 
-8. Role Management
-- **Customer**:
-- Lihat menu.
-- Pesan makanan.
-- Lihat status pesanan.
-- Lakukan pembayaran & beri feedback.
-
-- **Chef**:
-- Lihat pesanan.
-- Update status pesanan.
-- Tidak bisa akses manajemen pengguna/menu.
-
-- **Admin**:
-- Kelola semua menu, pesanan, pengiriman, pembayaran, dan pengguna.
-- Lihat semua feedback.
 
 
 <!DOCTYPE html>

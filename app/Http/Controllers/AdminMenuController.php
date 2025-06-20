@@ -58,11 +58,17 @@ class AdminMenuController extends Controller
         $request->validate([
             'nama_makanan' => 'required|string|max:255',
             'harga' => 'required|numeric',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
+
+        $gambar = $request->file('gambar');
+        $gambarName = time() . '.' . $gambar->getClientOriginalExtension();
+        $gambar->move(public_path('images'), $gambarName);
 
         Menu::create([
             'nama_makanan' => $request->nama_makanan,
             'harga' => $request->harga,
+            'gambar' => $gambarName,
         ]);
         return redirect()->route('admin.menus.index')->with('success', 'Menu berhasil ditambahkan.');
     }

@@ -134,7 +134,6 @@
                             <i class="fas fa-fw fa-receipt"></i>
                             <span>Kelola Pesanan</span></a>
                     </li>
-
                     <!-- Kelola Pembayaran -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.payments.index') }}">
