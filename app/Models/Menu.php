@@ -12,11 +12,7 @@ class Menu extends Model
 
     protected $table = 'menus';
 
-
-    protected $fillable = [
-        'nama_makanan',
-        'harga',
-    ];
+    protected $fillable = ['nama_makanan', 'harga', 'gambar'];
 
     public function index()
     {
